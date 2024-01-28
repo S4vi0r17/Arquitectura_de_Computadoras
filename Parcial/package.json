@@ -12,9 +12,11 @@
   "dependencies": {
     "cors": "^2.8.5",
     "helmet": "^7.1.0",
+    "json-server": "^1.0.0-alpha.23",
     "morgan": "^1.10.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "recharts": "^2.11.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.43",

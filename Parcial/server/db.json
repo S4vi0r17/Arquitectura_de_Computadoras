@@ -1,0 +1,7 @@
+{
+    "data": {
+        "temperatura": 28,
+        "humedad": 54,
+        "ventiladorEncendido": true
+    }
+}
