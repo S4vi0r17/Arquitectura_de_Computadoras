@@ -13,7 +13,7 @@ const int RELAY_PIN = 12;
 
 const char *ssid = "name"; // Reemplaza con el nombre de tu red WiFi
 const char *password = "password";
-const char *serverAddress = "http://<ip>:4000/datos";
+const char *serverAddress = "https://eophwojhzsln63w.m.pipedream.net";
 
 DHTesp dhtSensor;
 LiquidCrystal_I2C lcd(I2C_ADDR, LCD_COLUMNS, LCD_LINES);
