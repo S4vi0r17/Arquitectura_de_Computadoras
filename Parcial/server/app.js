@@ -3,12 +3,20 @@ import path from 'path';
 import cors from 'cors';
 import helmet from 'helmet';
 import morgan from 'morgan';
-import { fileURLToPath } from "url";
+import { fileURLToPath } from 'url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const app = express();
-const PORT = 4000;
+const PORT = process.env.PORT || 4000;
+
+let ultimosDatos = {
+  temperatura: 0,
+  humedad: 0,
+  ventiladorEncendido: false,
+};
+
+let esp32Activo = true; // Agrega esta variable para rastrear el estado del ESP32
 
 app.use(cors());
 app.use(helmet());
@@ -18,12 +26,32 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.post('/datos', (req, res) => {
-    // const { temperatura, humedad, ventiladorEncendido } = req.body;
-    // console.log(`Temperatura: ${temperatura}°C, Humedad: ${humedad}%, Ventilador: ${ventiladorEncendido ? 'Encendido' : 'Apagado'}`);
-    console.log(req.body);
+  const { temperatura, humedad, ventiladorEncendido } = req.body;
+  console.log(`Temperatura: ${temperatura}°C, Humedad: ${humedad}%, Ventilador: ${ventiladorEncendido ? 'Encendido' : 'Apagado'}`);
+
+  if (esp32Activo) {
+    ultimosDatos = {
+      temperatura,
+      humedad,
+      ventiladorEncendido,
+    };
     res.status(200).send('Datos recibidos correctamente');
+  } else {
+    res.status(503).send('ESP32 apagado. Datos no actualizados.');
+  }
+});
+
+app.get('/api/datos', (req, res) => {
+  res.json(ultimosDatos);
+});
+
+// Agrega un endpoint para cambiar el estado del ESP32
+app.post('/esp32/estado', (req, res) => {
+  const { activo } = req.body;
+  esp32Activo = activo;
+  res.status(200).send(`Estado del ESP32 actualizado a ${activo ? 'activo' : 'apagado'}`);
 });
 
 app.listen(PORT, () => {
-    console.log(`Servidor escuchando en el puerto http://localhost:${PORT}/datos`);
+  console.log(`Servidor escuchando en el puerto http://localhost:${PORT}`);
 });
