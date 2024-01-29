@@ -4,11 +4,11 @@
     box-sizing: border-box;
 }
 
-body {
+/* body {
     display: flex;
     justify-content: center;
     align-items: center;
-}
+} */
 
 #gauge {
     position: relative;
@@ -30,7 +30,7 @@ body {
 
 #major-ticks span {
     position: absolute;
-    font-size: 0.7em;
+    font-size: 1.1em;
     color: #afafaf;
 }
 

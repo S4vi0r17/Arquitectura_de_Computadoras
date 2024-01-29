@@ -3,7 +3,7 @@ import fan from '../assets/fan.svg';
 
 const Fan = ({ ventiladorEncendido }) => {
 	return (
-		<div className='h-auto w-full shadow-xl rounded-2xl flex flex-col gap-5 justify-center items-center row-start-1 lg:col-start-6 lg:row-start-2'>
+		<div className='h-auto w-full shadow-xl rounded-2xl flex flex-col gap-5 justify-center items-center md:col-span-2 lg:col-start-5 lg:col-span-1 row-start-1'>
 			<img
 				src={fan}
 				alt=''

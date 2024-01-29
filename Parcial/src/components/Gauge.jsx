@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import { useState, useEffect } from 'react';
-import celsius from '../assets/celsius.svg';
+// import celsius from '../assets/celsius.svg';
 import '../customStyles.css';
 
 const Gauge = ({ temperatura }) => {
@@ -20,15 +20,15 @@ const Gauge = ({ temperatura }) => {
 	return (
 		<div id='gauge'>
 			<div id='major-ticks'>
-				<span>10℃</span>
+				<span>❄️</span>
 				<span>20℃</span>
-				<span>30℃</span>
+				<span>🥵</span>
 			</div>
-			<div id='minor-ticks'>
+			{/* <div id='minor-ticks'>
 				{[...Array(20)].map((_, i) => (
 					<span key={i} title={`--i:${i + 1}`}></span>
 				))}
-			</div>
+			</div> */}
 			<div id='minor-ticks-bottom-mask'></div>
 			<div id='bottom-circle'></div>
 			<svg

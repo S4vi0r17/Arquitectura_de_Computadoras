@@ -58,20 +58,24 @@ const App = () => {
 			<h1 className='text-6xl text-center my-5 font-semibold text-gray-500'>
 				Datos del ESP32
 			</h1>
-			<div className='mt-5 lg:mt-20 p-5 grid gap-5 md:gap-10 grid-cols-1 grid-rows-3 md:grid-cols-3 md:grid-rows-2 lg:gap-5 lg:grid-cols-6 lg:grid-rows-2 justify-items-center container mx-auto'>
-				<Temperature temperatura={temperatura} />
+			<div className='mt-5 lg:mt-15 p-5 grid gap-5 md:gap-10 grid-cols-1 grid-rows-3 md:grid-cols-4 md:grid-rows-3 lg:gap-5 lg:grid-cols-6 lg:grid-rows-2 justify-items-center container mx-auto'>
+				{/* <Temperature temperatura={temperatura} />
+				 */}
+				<div className='h-auto w-full flex justify-center mx-auto shadow-xl rounded-2xl md:col-start-2 md:col-span-2 lg:col-start-5 lg:col-end-7'>
+					<Gauge temperatura={temperatura} />
+				</div>
 				<Fan ventiladorEncendido={ventiladorEncendido} />
 				<Humidity humedad={humedad} />
-				<div className='mt-5 lg:mt-0 w-full row-start-4 md:col-span-3 md:row-start-2 lg:col-start-1 lg:col-span-4 lg:row-start-1 lg:row-end-3'>
+				<div className='flex items-center lg:mt-0 w-full row-start-4 md:row-start-3 md:col-span-4 lg:col-start-1 lg:col-end-5 lg:row-start-1 lg:row-end-3'>
 					<Graphic
 						temperatura={temperatura}
 						humedad={humedad}
 						time={time}
 					/>
 				</div>
-				<div className='flex justify-center mx-auto'>
+				{/* <div className='flex justify-center mx-auto'>
 					<Gauge temperatura={temperatura} />
-				</div>
+				</div> */}
 			</div>
 		</div>
 	);
