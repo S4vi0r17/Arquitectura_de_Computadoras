@@ -7,6 +7,7 @@ import {
 	YAxis,
 	CartesianGrid,
 	Tooltip,
+	ResponsiveContainer, // Para que se adapte al tamaño del contenedor
 } from 'recharts';
 
 const Graphic = ({ temperatura, humedad, time }) => {
@@ -27,35 +28,35 @@ const Graphic = ({ temperatura, humedad, time }) => {
 	}, [temperatura, humedad]);
 
 	return (
-		<AreaChart
-			width={800}
-			height={400}
-			data={data}
-			margin={{
-				top: 0,
-				right: 30,
-				left: 0,
-				bottom: 0,
-			}}
-		>
-			<CartesianGrid strokeDasharray='0' />
-			<XAxis dataKey='name' />
-			<YAxis />
-			<Tooltip />
+		<ResponsiveContainer width='95%' height={400}>
+			<AreaChart
+				data={data}
+				margin={{
+					top: 0,
+					right: 30,
+					left: 0,
+					bottom: 0,
+				}}
+			>
+				<CartesianGrid strokeDasharray='0' />
+				<XAxis dataKey='name' />
+				<YAxis />
+				<Tooltip />
 
-			<Area
-				type='monotone'
-				dataKey='hum'
-				stroke='#98c8ed'
-				fill='#98c8ed'
-			/>
-			<Area
-				type='monotone'
-				dataKey='tem'
-				stroke='#f8644b'
-				fill='#f8644b'
-			/>
-		</AreaChart>
+				<Area
+					type='monotone'
+					dataKey='hum'
+					stroke='#98c8ed'
+					fill='#98c8ed'
+				/>
+				<Area
+					type='monotone'
+					dataKey='tem'
+					stroke='#f8644b'
+					fill='#f8644b'
+				/>
+			</AreaChart>
+		</ResponsiveContainer>
 	);
 };
 

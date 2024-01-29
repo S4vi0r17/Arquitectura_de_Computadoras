@@ -57,11 +57,11 @@ const App = () => {
 			<h1 className='text-6xl text-center my-5 font-semibold text-gray-500'>
 				Datos del ESP32
 			</h1>
-			<div className='mt-20 p-5 grid gap-10 lg:gap-5 lg:grid-cols-6 lg:grid-rows-2 justify-items-center container mx-auto'>
+			<div className='mt-5 lg:mt-20 p-5 grid gap-5 md:gap-10 grid-cols-1 grid-rows-3 md:grid-cols-3 md:grid-rows-2 lg:gap-5 lg:grid-cols-6 lg:grid-rows-2 justify-items-center container mx-auto'>
 				<Temperature temperatura={temperatura} />
 				<Fan ventiladorEncendido={ventiladorEncendido} />
 				<Humidity humedad={humedad} />
-				<div className='w-full row-start-3 lg:col-start-1 lg:col-span-4 lg:row-start-1 lg:row-end-3'>
+				<div className='mt-5 lg:mt-0 w-full row-start-4 md:col-span-3 md:row-start-2 lg:col-start-1 lg:col-span-4 lg:row-start-1 lg:row-end-3'>
 					<Graphic
 						temperatura={temperatura}
 						humedad={humedad}
