@@ -39,8 +39,8 @@ const Gauge = ({ temperatura }) => {
 				xmlns='http://www.w3.org/2000/svg'
 			>
 				<linearGradient id='gradient' x1='0' x2='1' y1='0' y2='0'>
-					<stop offset='0%' stopColor='#b96e85' />
-					<stop offset='100%' stopColor='#ae69bb' />
+					<stop offset='0%' stopColor='#c1def4' />
+					<stop offset='100%' stopColor='#e2958f' />
 				</linearGradient>
 				<path
 					id='arcPath'
@@ -54,8 +54,8 @@ const Gauge = ({ temperatura }) => {
 			</svg>
 			<div id='center-circle'>
 				<span id='name'>Temperatura</span>
-				<span id='temperature'>{temperatura}</span>
-				<img src={celsius} alt='' />
+				<span className='mt-5' id='temperature'>{temperatura}℃</span>
+				{/* <img src={celsius} alt='' /> */}
 			</div>
 		</div>
 	);

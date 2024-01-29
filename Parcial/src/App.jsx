@@ -69,7 +69,7 @@ const App = () => {
 						time={time}
 					/>
 				</div>
-				<div className='flex justify-center'>
+				<div className='flex justify-center mx-auto'>
 					<Gauge temperatura={temperatura} />
 				</div>
 			</div>
