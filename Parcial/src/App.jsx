@@ -3,6 +3,7 @@ import Temperature from './components/Temperature';
 import Humidity from './components/Humidity';
 import Fan from './components/Fan';
 import Graphic from './components/Graphic';
+import Gauge from './components/Gauge';
 
 const App = () => {
 	// const [temperatura, setTemperatura] = useState(null);
@@ -67,6 +68,9 @@ const App = () => {
 						humedad={humedad}
 						time={time}
 					/>
+				</div>
+				<div className='flex justify-center'>
+					<Gauge temperatura={temperatura} />
 				</div>
 			</div>
 		</div>
