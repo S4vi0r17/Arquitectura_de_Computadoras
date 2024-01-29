@@ -33,7 +33,8 @@ const App = () => {
 				// const response = await fetch(
 				// 	'https://servergbpesp32.onrender.com/api/datos'
 				// );
-				const response = await fetch('http://localhost:4000/data');
+				const response = await fetch(import.meta.env.VITE_API_URL);
+				// const response = await fetch('http://localhost:4000/data');
 				// console.log(response);
 				const data = await response.json();
 				// console.log(data);
