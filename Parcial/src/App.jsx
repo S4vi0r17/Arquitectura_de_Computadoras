@@ -14,7 +14,7 @@ const App = () => {
 	const [time, setTime] = useState(getFormattedTime());
 
 	useEffect(() => {
-		const intervalId = setInterval(() => {
+		setInterval(() => {
 			setTime(getFormattedTime());
 		}, 5000);
 	}, []);
@@ -53,15 +53,15 @@ const App = () => {
 	}, []);
 
 	return (
-		<div className='max-w-[1200px] mx-auto flex flex-col justify-center items-center'>
+		<div className='mt-12 max-w-[1300px] mx-auto flex flex-col justify-center items-center'>
 			<h1 className='text-6xl text-center my-5 font-semibold text-gray-500'>
 				Datos del ESP32
 			</h1>
-			<div className='mt-20 grid gap-5 grid-cols-6 grid-rows-2 justify-items-center container mx-auto'>
+			<div className='mt-20 p-5 grid gap-10 lg:gap-5 lg:grid-cols-6 lg:grid-rows-2 justify-items-center container mx-auto'>
 				<Temperature temperatura={temperatura} />
 				<Fan ventiladorEncendido={ventiladorEncendido} />
 				<Humidity humedad={humedad} />
-				<div className='col-start-1 col-span-4 row-start-1 row-end-3'>
+				<div className='w-full row-start-3 lg:col-start-1 lg:col-span-4 lg:row-start-1 lg:row-end-3'>
 					<Graphic
 						temperatura={temperatura}
 						humedad={humedad}
