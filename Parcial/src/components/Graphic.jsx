@@ -24,7 +24,7 @@ const Graphic = ({ temperatura, humedad, time }) => {
 				? newData.slice(newData.length - 9)
 				: newData;
 		});
-	}, [temperatura, humedad, time]);
+	}, [temperatura, humedad]);
 
 	return (
 		<AreaChart
