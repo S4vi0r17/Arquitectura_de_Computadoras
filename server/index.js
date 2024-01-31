@@ -7,9 +7,9 @@ const app = express();
 const PORT = process.env.PORT || 4000;
 
 let ultimosDatos = {
-  temperatura: 0,
-  humedad: 0,
-  ventiladorEncendido: false,
+    temperatura: 0,
+    humedad: 0,
+    ventiladorEncendido: false,
 };
 
 app.use(cors());
@@ -20,22 +20,22 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.post('/datos', (req, res) => {
-  const { temperatura, humedad, ventiladorEncendido } = req.body;
-  console.log(`Temperatura: ${temperatura}°C, Humedad: ${humedad}%, Ventilador: ${ventiladorEncendido ? 'Encendido' : 'Apagado'}`);
+    const { temperatura, humedad, ventiladorEncendido } = req.body;
+    console.log(`Temperatura: ${temperatura}°C, Humedad: ${humedad}%, Ventilador: ${ventiladorEncendido ? 'Encendido' : 'Apagado'}`);
 
-  ultimosDatos = {
-    temperatura,
-    humedad,
-    ventiladorEncendido,
-  };
+    ultimosDatos = {
+        temperatura,
+        humedad,
+        ventiladorEncendido,
+    };
 
-  res.status(200).send('Datos recibidos correctamente');
+    res.status(200).send('Datos recibidos correctamente');
 });
 
 app.get('/api/datos', (req, res) => {
-  res.json(ultimosDatos);
+    res.json(ultimosDatos);
 });
 
 app.listen(PORT, () => {
-  console.log(`Servidor escuchando en el puerto http://localhost:${PORT}/datos`);
+    console.log(`Servidor escuchando en el puerto http://localhost:${PORT}/datos`);
 });
