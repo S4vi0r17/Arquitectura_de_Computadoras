@@ -25,7 +25,7 @@ const Graphic = ({ temperatura, humedad, time }) => {
 				? newData.slice(newData.length - 9)
 				: newData;
 		});
-	}, [temperatura, humedad]);
+	}, [temperatura, humedad, time]);
 
 	return (
 		<ResponsiveContainer width='95%' height={400}>
