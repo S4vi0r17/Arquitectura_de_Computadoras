@@ -7,7 +7,6 @@ import face_recognition
 
 app = Flask(__name__)
 
-# Almacenar los últimos datos recibidos
 ultimosDatos = {
     "temperatura": 0,
     "humedad": 0,
@@ -23,7 +22,6 @@ def recibir_datos():
     
     print(f"Temperatura: {temperatura}°C, Humedad: {humedad}%, Ventilador: {'Encendido' if ventilador_encendido else 'Apagado'}")
     
-    # Actualizar los últimos datos recibidos
     global ultimosDatos
     ultimosDatos = {
         "temperatura": temperatura,
