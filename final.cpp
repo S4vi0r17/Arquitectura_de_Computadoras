@@ -11,6 +11,7 @@ const int RELAY_PIN = 12;
 const char *ssid = "go"; // Reemplaza con el nombre de tu red WiFi
 const char *password = "12345678910";
 const char *serverAddress = "https://servergbpesp32.onrender.com/datos";
+// const char *serverAddress = "https://servergbpesp32.onrender.com/upload"; para enviar imagenes
 DHTesp dhtSensor;
 LiquidCrystal_I2C lcd(I2C_ADDR, LCD_COLUMNS, LCD_LINES);
 // unsigned char rawData[69164] = {
@@ -5793,6 +5794,18 @@ void setup()
 
 	Serial.println("Conectado a la red Wi-Fi");
 	// Conexión a Wi-Fi
+
+	/*
+	  // Inicialización de la cámara
+		camera_config_t config;
+		// Configurar la cámara aquí según sea necesario
+		esp_err_t err = esp_camera_init(&config);
+		if (err != ESP_OK) {
+			Serial.printf("Error al inicializar la cámara! (error %d)\n", err);
+			return;
+		}
+	*/
+
 	dhtSensor.setup(DHT_PIN, DHTesp::DHT22);
 	pinMode(RELAY_PIN, OUTPUT);
 	digitalWrite(RELAY_PIN, LOW);
@@ -5808,31 +5821,6 @@ void setup()
 	pinMode(23, OUTPUT);
 	lcd.init();
 	lcd.backlight();
-}
-void enviarDatos(float temperatura, float humedad, bool ventiladorEncendido)
-{
-	HTTPClient http;
-
-	http.begin(serverAddress);
-
-	http.addHeader("Content-Type", "application/json");
-
-	String jsonPayload = "{\"temperatura\":" + String(temperatura) +
-						 ",\"humedad\":" + String(humedad) +
-						 ",\"ventiladorEncendido\":" + String(ventiladorEncendido) + "}";
-
-	int httpResponseCode = http.POST(jsonPayload);
-
-	if (httpResponseCode > 0)
-	{
-		Serial.println(http.getString());
-	}
-	else
-	{
-		Serial.println("Error en la solicitud HTTP");
-	}
-
-	http.end();
 }
 
 void loop()
@@ -5913,6 +5901,25 @@ void loop()
 		digitalWrite(23, HIGH);
 		delay(1000);
 	}
+
+	// Enviar la imagen al servidor
+
+	/*
+	// Capturar imagen
+	camera_fb_t *fb = esp_camera_fb_get();
+	if (!fb) {
+		Serial.println("Error al capturar la foto");
+		return;
+	}
+
+	// Enviar imagen al servidor
+	enviarImagenAServidor(fb->buf, fb->len);
+
+	// Liberar la memoria de la imagen
+	esp_camera_fb_return(fb);
+
+*/
+
 	enviarDatos(data.temperature, data.humidity, digitalRead(RELAY_PIN) == HIGH);
 }
 // 36908
@@ -5923,4 +5930,51 @@ void audio1()
 		dacWrite(25, rawData[i]);
 		delayMicroseconds(14);
 	}
+}
+
+// Enviar datos: Temperatura, humedad y estado del relé
+void enviarDatos(float temperatura, float humedad, bool ventiladorEncendido)
+{
+	HTTPClient http;
+
+	http.begin(serverAddress);
+
+	http.addHeader("Content-Type", "application/json");
+
+	String jsonPayload = "{\"temperatura\":" + String(temperatura) +
+						 ",\"humedad\":" + String(humedad) +
+						 ",\"ventiladorEncendido\":" + String(ventiladorEncendido) + "}";
+
+	int httpResponseCode = http.POST(jsonPayload);
+
+	if (httpResponseCode > 0)
+	{
+		Serial.println(http.getString());
+	}
+	else
+	{
+		Serial.println("Error en la solicitud HTTP");
+	}
+
+	http.end();
+}
+
+// Enviar imagen
+void enviarImagenAServidor(uint8_t *imageBuffer, size_t bufferSize)
+{
+	HTTPClient http;
+	http.begin(serverAddress);
+	http.addHeader("Content-Type", "image/jpeg");
+
+	int httpResponseCode = http.POST(imageBuffer, bufferSize);
+	if (httpResponseCode > 0)
+	{
+		Serial.println("Foto enviada correctamente al servidor");
+	}
+	else
+	{
+		Serial.println("Error al enviar la foto al servidor");
+	}
+
+	http.end();
 }
