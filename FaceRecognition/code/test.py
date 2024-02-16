@@ -31,7 +31,7 @@ while True:
     frame = cv2.flip(frame, 1)
 
     # "cnn" para mayor precisión
-    face_locations = face_recognition.face_locations(frame, model="cnn")
+    face_locations = face_recognition.face_locations(frame, model="hog")
     if face_locations:
         for face_location in face_locations:
             face_frame_encodings = face_recognition.face_encodings(frame, known_face_locations=[face_location])[0]
