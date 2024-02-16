@@ -1,7 +1,6 @@
 import cv2
 import face_recognition
 
-# Cargar la imagen de referencia y obtener la codificación del rostro
 image = cv2.imread("../images/2.png")
 face_loc = face_recognition.face_locations(image)[0]
 print("face_loc:", face_loc)
@@ -11,24 +10,23 @@ print("face_image_encodings:", face_image_encodings)
 # URl del streaming
 rtsp_url = "http://192.168.1.42:4747/video"
 
-# Inicializar la captura de video desde RTSP
+# Inicializar la captura
 cap = cv2.VideoCapture(rtsp_url)
 
-# Reducir la resolución del video
+# Resolución del video
 cap.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
 cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
 
-# Contador de fotogramas para reducir la frecuencia de procesamiento
-frame_count = 0
+# frame_count = 0
 
 while True:
     ret, frame = cap.read()
     if not ret:
         break
     
-    frame_count += 1
-    if frame_count % 2 != 0:  # Procesar solo cada segundo fotograma
-        continue
+    # frame_count += 1
+    # if frame_count % 2 != 0:  # Procesar solo cada segundo fotograma
+    #     continue
     
     frame = cv2.flip(frame, 1)
 
