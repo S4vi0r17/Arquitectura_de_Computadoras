@@ -25,8 +25,8 @@ while True:
      if ret == False: break
      frame = cv2.flip(frame, 1)
 
-     face_locations = face_recognition.face_locations(frame, model="cnn")
-     #face_locations = face_recognition.face_locations(frame, model="hog")
+     # face_locations = face_recognition.face_locations(frame, model="cnn")
+     face_locations = face_recognition.face_locations(frame, model="hog")
      
      if face_locations != []:
           for face_location in face_locations:
