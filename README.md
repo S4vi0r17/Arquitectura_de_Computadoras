@@ -40,3 +40,14 @@ Para enviar imágenes, utiliza el siguiente endpoint de la API:
   
   - **Key:** `file`
   - **Value:** `imagen.jpg`
+
+---
+
+# Proyecto Final
+Sistemas de seguridad con reconocimiento facial y cerraadura electrónica.
+
+## Imagenes del Proyecto
+
+![Proyecto](./Final/img/ESQUEMA_PROTEUS-DSPIC33FJ32MC204.jpeg)
+![Proyecto](./Final/img/ESQUEMA_WOKWI-ESP32CAM.jpeg)
+![Proyecto](./Final/img/ESQUEMA_WOKWI-ESP32_WROOM.png)
