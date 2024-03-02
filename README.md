@@ -2,7 +2,7 @@
 
 Este repositorio alberga los proyectos correspondientes al parcial y final del curso de Arquitectura de Computadoras utilizando ESP32.
 
-![Proyecto](./img/mockup.png)
+![Proyecto](./Parcial/img/mockup.png)
 
 > **Requerimientos:**
 > - [Dlib para Windows con Python 3.x](https://github.com/z-mahmud22/Dlib_Windows_Python3.x)
